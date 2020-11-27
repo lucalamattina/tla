@@ -1,11 +1,11 @@
 %{
   #include <stdio.h>
-  #include "./y.tab.h"
+  #include "y.tab.h"
   void yyerror (char *s);
   int yylex();
 %}
 
-string    [a-zA-Z][_a-zA-Z0-9]*
+string    [a-zA-Z][a-zA-Z0-9]*
 number    [0-9][0-9]*
 space     [ \t\n]
 
@@ -51,7 +51,7 @@ space     [ \t\n]
                         yylval.str = str;
                         return STRING;
                         }
-                        
+
 {string}                {char *str = malloc(strlen(yytext)+1);
                         strcpy(str, yytext);
                         yylval.str = str;
