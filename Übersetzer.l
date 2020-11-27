@@ -50,7 +50,13 @@ space     [ \t\n]
                         strcpy(str, yytext);
                         yylval.str = str;
                         return STRING;
-                        }  
+                        }
+                        
+{string}                {char *str = malloc(strlen(yytext)+1);
+                        strcpy(str, yytext);
+                        yylval.str = str;
+                        return ID;
+                        }
 
 {number}                {char *str = malloc(strlen(yytext)+1);
                         strcpy(str, yytext);
@@ -58,11 +64,6 @@ space     [ \t\n]
                         return NUM;
                         }
 
-{word}                  {char *str = malloc(strlen(yytext)+1);
-                        strcpy(str, yytext);
-                        yylval.str = str;
-                        return ID;
-                        }
 
 .                       {yyerror("Invalid character!");}
 
