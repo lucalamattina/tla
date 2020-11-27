@@ -5,10 +5,9 @@
   int yylex();
 %}
 
-word      [a-zA-Z][_a-zA-Z0-9]*
+string    [a-zA-Z][_a-zA-Z0-9]*
 number    [0-9][0-9]*
 space     [ \t\n]
-ws        {space}+
 
 %%
 
@@ -18,13 +17,13 @@ ws        {space}+
 "und"                 return AND;
 "oder"                return OR;
 "main"                return MAIN;
-"zahl"                return T_INT;
-"wort"                return T_STRING;
-"boolescher"          return T_BOOL;
+"zahl"                return INT;
+"wort"                return STRING;
+"boolescher"          return BOOLEAN;
 "drucken"             return PRINT;
 "lesen"               return READ;
 "rückkehr"            return RETURN;
-"sum"                 return SUM;
+"sum"                 return ADD;
 "subtrahieren"        return SUBSTRACT;
 "multiplizieren"      return MULTIPLY;
 "teilen"              return DIVIDE;
@@ -37,8 +36,8 @@ ws        {space}+
 "wenigerg"            return LE_THAN;
 "größer"              return G_THAN;
 "größerg"             return GE_THAN;
-"wahr"                return TRUE_VAL;
-"falsch"              return FALSE_VAL;
+"wahr"                return TRUE_BOOL;
+"falsch"              return FALSE_BOOL;
 "oklammer"            return L_PAREN;
 "sklammer"            return R_PAREN;
 "ohalterung"          return L_BRACK;
@@ -65,7 +64,7 @@ ws        {space}+
                         return ID;
                         }
 
-.                       {yyerror("Unexpected character");}
+.                       {yyerror("Invalid character!");}
 
 %%
 
