@@ -28,6 +28,23 @@
 
 #define NODE_TYPE 1;
 
+
+typedef enum token {
+
+  Tmain, Twhile, Tlparen, Trparen, Tlbrack, Trbrack, Tif, Tsemicolon, Tequal, Tor, Tand,
+  Tnot, Tisequal, Tdiff, Tlthan, Tlethan, Tgthan, Tgethan, Tplus, Tminus, Tmult, Tdiv, Tmod, 
+  Tstring, Tint, Tprint, Ttrue, Tfalse, Tid, Tint_E, Tstring_E, Tnotleaf, Tbool, Tconst,
+  Treadbuff, Tcomma, Tempty, Treturn, Tfreebuff
+
+} token;
+
+static char * tokens[100] = {
+  "int main", "while", "( ", ")", "{\n", " }\n", "if", ";\n", "= ", "|| ", "&& ", "! ",
+  "== ", "!= ", "< ", "<= ", "> ", ">= ", "+ ", "- ", "* ", "/ ", "% ",
+  "char * ", "int ", "printf", "1 ", "0 ","","","", "not Leaf ", "int ", "const ",
+  "read_buff", ", ", "", "return ", "free_buff();"};
+
+
 struct node_list_t;
 
 // This class implements the abstract iterator class
@@ -36,6 +53,10 @@ typedef struct node_t {
 	struct node_t* next;
 	struct node_t* prev;
 	unsigned int count;
+
+	//Node properties
+	char * value;
+	token token;
 
 	// Local Properties
 	int isRoot;

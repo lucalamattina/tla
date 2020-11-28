@@ -28,6 +28,33 @@
 #include "node_list.h"
 #include "node_iterator.h"
 
+node_t * new_node_with_val(char* val, token token){
+	node_t* node = (node_t*) malloc(sizeof(node_t));
+	if(node == NULL) {
+		return NULL;
+	}
+	memset(node, '\0', sizeof(node_t));
+
+	node->value = val;
+	node->token = token;
+	node->data = NULL;
+	node->depth = 0;
+	node->next = NULL;
+	node->prev = NULL;
+	node->count = 0;
+	node->isLeaf = TRUE;
+	node->isRoot = TRUE;
+	node->parent = NULL;
+	node->children = NULL;
+
+	return node;
+}
+
+node_t * new_node(char * val){
+	node_t * new = new_node_with_val(val, Tnotleaf);
+	return new;
+}
+
 void node_destroy(node_t* node) {
 	if(!node) return;
 
@@ -220,4 +247,45 @@ node_t* node_copy_deep(node_t* node, copy_func_t copy_func)
 		node_attach(copy, cc);
 	}
 	return copy;
+}
+
+void printTree(node_t * node){
+	if(node == NULL){
+		printf("ERROR 1\n");
+		return;
+	}
+	if(node->token != Tnotleaf){
+		if(node->token != Tint_E && node->token != Tstring_E && node->token != Tid) {
+     	 		node->value = tokens[node->token];
+    		}
+		if(node->value == NULL){
+      			printf( "ERROR 2\n");
+     			 return;
+    		}
+
+    	printf("%s ", node->value );
+    
+   	 return;
+
+  	}	
+
+  	if(node->token == Tnotleaf){
+
+    		if(node->children == NULL){
+      			printf("ERROR 3\n");
+      			return;
+    		}
+
+    		node_t * aux = node->children;
+
+    		while(aux != NULL){
+      			printTree(aux);
+      			aux = aux->next;
+    		}
+  	}
+}
+
+void printHeaders(){
+	printf("#include <stdio.h>\n");
+	printf("#include <stdlib.h>\n");
 }
