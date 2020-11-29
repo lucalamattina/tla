@@ -1,0 +1,17 @@
+zahl fun oklammer zahl num1 kolon zahl num2 sklammer ohalterung
+  zahl toRet gleich num1 semikolon
+  zahl aux gleich 1 semikolon
+  während oklammer aux weniger num2 sklammer ohalterung
+    toRet gleich toRet multiplizieren num1 semikolon
+    aux gleich aux sum 1 semikolon
+  shalterung
+  ruckkehr toRet semikolon
+shalterung
+
+main  oklammer sklammer ohalterung
+  zahl base gleich 2 semikolon
+  zahl pot gleich 3 semikolon
+  zahl result gleich fun oklammer base kolon pot sklammer semikolon
+  drucken oklammer "%d ^ %d = %d \n" kolon base kolon pot kolon result sklammer semikolon
+  ausfahrt
+shalterung

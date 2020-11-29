@@ -1,0 +1,15 @@
+main oklammer sklammer ohalterung
+  zahl a gleich 10 semikolon
+  zahl b gleich 3 semikolon
+  drucken oklammer "a = %d \n" kolon a sklammer semikolon
+  drucken oklammer "b = %d \n" kolon b sklammer semikolon
+  zahl c gleich a modul b semikolon
+  drucken oklammer "a mod b = %d \n" kolon c sklammer semikolon 
+  c gleich b multiplizieren a semikolon
+  drucken oklammer "a * b = %d \n" kolon c sklammer semikolon
+  c gleich a teilen b semikolon
+  drucken oklammer "a / b = %d \n" kolon c sklammer semikolon
+  c gleich a subtrahieren b sum a semikolon
+  drucken oklammer "a - b + a = %d \n" kolon c sklammer semikolon
+  ausfahrt
+shalterung

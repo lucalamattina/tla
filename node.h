@@ -15,7 +15,7 @@ static char * tokens[100] = {
   "int main", "while", "( ", ")", "{\n", " }\n", "if", ";\n", "= ", "|| ", "&& ", "! ",
   "== ", "!= ", "< ", "<= ", "> ", ">= ", "+ ", "- ", "* ", "/ ", "% ",
   "char * ", "int ", "printf", "1 ", "0 ","","","", "not Leaf ", "int ",
-  "", ", ", "", "", "return 0;"};
+  "", ", ", "", "return ", "return 0;"};
 
 
 typedef struct node_t {

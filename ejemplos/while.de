@@ -1,0 +1,9 @@
+main oklammer sklammer ohalterung
+  zahl a gleich 0 semikolon
+  drucken oklammer "a = %d \n" kolon a sklammer semikolon
+  während oklammer a wenigerg 10 sklammer ohalterung
+    a gleich a sum 1 semikolon
+  drucken oklammer "a = %d \n" kolon a sklammer semikolon
+  shalterung
+ausfahrt
+shalterung

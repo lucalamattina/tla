@@ -1,0 +1,15 @@
+main  oklammer sklammer ohalterung
+  boolescher varT gleich wahr semikolon
+  boolescher varF gleich falsch semikolon
+  drucken oklammer "true && false = false \n" sklammer semikolon
+  wenn oklammer varT oder varF sklammer ohalterung
+    drucken oklammer "true || false = true \n" sklammer semikolon
+  shalterung
+  wenn oklammer varT und varT sklammer ohalterung
+    drucken oklammer "true && true = true \n" sklammer semikolon
+  shalterung
+  wenn oklammer varF und varF sklammer ohalterung
+    drucken oklammer "false && false = false \n" sklammer semikolon
+  shalterung
+  ausfahrt
+shalterung

@@ -1,0 +1,12 @@
+main  oklammer sklammer ohalterung
+  zahl a gleich 3 semikolon
+  wort drei gleich "three" semikolon
+  wort ndrei gleich "not three" semikolon
+  wenn oklammer a gleich? 3 sklammer ohalterung
+    drucken oklammer "%s\n" kolon drei sklammer semikolon
+  shalterung
+  wenn oklammer a anders 3 sklammer ohalterung
+    drucken oklammer "%s\n" kolon ndrei sklammer semikolon
+  shalterung
+  ausfahrt
+shalterung
