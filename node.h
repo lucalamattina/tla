@@ -1,39 +1,12 @@
-/*
- * node.h
- *
- *  Created on: Mar 7, 2011
- *      Author: posixninja
- *
- * Copyright (c) 2011 Joshua Hill. All Rights Reserved.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- */
-
 #ifndef NODE_H_
 #define NODE_H_
-
-#include "object.h"
-
-#define NODE_TYPE 1;
 
 
 typedef enum token {
 
   Tmain, Twhile, Tlparen, Trparen, Tlbrack, Trbrack, Tif, Tsemicolon, Tequal, Tor, Tand,
-  Tnot, Tisequal, Tdiff, Tlthan, Tlethan, Tgthan, Tgethan, Tplus, Tminus, Tmult, Tdiv, Tmod, 
-  Tstring, Tint, Tprint, Ttrue, Tfalse, Tid, Tint_E, Tstring_E, Tnotleaf, Tbool, Tconst,
+  Tnot, Tisequal, Tdiff, Tlthan, Tlethan, Tgthan, Tgethan, Tadd, Tsubstract, Tmultiply, Tdivide, Tmodule, 
+  Tstring, Tint, Tprint, Ttrue, Tfalse, Tid, Tint_E, Tstring_E, Tnotleaf, Tboolean,
   Treadbuff, Tcomma, Tempty, Treturn, Tfreebuff
 
 } token;
@@ -41,56 +14,49 @@ typedef enum token {
 static char * tokens[100] = {
   "int main", "while", "( ", ")", "{\n", " }\n", "if", ";\n", "= ", "|| ", "&& ", "! ",
   "== ", "!= ", "< ", "<= ", "> ", ">= ", "+ ", "- ", "* ", "/ ", "% ",
-  "char * ", "int ", "printf", "1 ", "0 ","","","", "not Leaf ", "int ", "const ",
-  "read_buff", ", ", "", "return ", "free_buff();"};
+  "char * ", "int ", "printf", "1 ", "0 ","","","", "not Leaf ", "int ",
+  "", ", ", "", "", "return 0;"};
 
 
-struct node_list_t;
-
-// This class implements the abstract iterator class
 typedef struct node_t {
-	// Super class
-	struct node_t* next;
-	struct node_t* prev;
-	unsigned int count;
-
-	//Node properties
-	char * value;
-	token token;
-
-	// Local Properties
-	int isRoot;
-	int isLeaf;
-
-	// Local Members
-	void *data;
-	unsigned int depth;
-	struct node_t* parent;
-	struct node_list_t* children;
-
-	// Virtual Functions
-	int(*attach)(struct node_t* parent, struct node_t* child);
-	int(*detach)(struct node_t* parent, struct node_t* child);
-
+  token token;
+  char  * value;
+  struct node_t  * next;
+  struct node_t  * prev;
+  struct node_t  * parent;
+  struct node_t  * children;
 } node_t;
 
-void node_destroy(struct node_t* node);
-struct node_t* node_create(struct node_t* parent, void* data);
 
-int node_attach(struct node_t* parent, struct node_t* child);
-int node_detach(struct node_t* parent, struct node_t* child);
-int node_insert(struct node_t* parent, unsigned int index, struct node_t* child);
 
-unsigned int node_n_children(struct node_t* node);
-node_t* node_nth_child(struct node_t* node, unsigned int n);
-node_t* node_first_child(struct node_t* node);
-node_t* node_prev_sibling(struct node_t* node);
-node_t* node_next_sibling(struct node_t* node);
-int node_child_position(struct node_t* parent, node_t* child);
+node_t * new_node_with_val(char* val, token token);
 
-typedef void* (*copy_func_t)(const void *src);
-node_t* node_copy_deep(node_t* node, copy_func_t copy_func);
+node_t * new_node(char * val);
 
-void node_debug(struct node_t* node);
 
-#endif /* NODE_H_ */
+void print_headers();
+
+void print_tree(node_t * node);
+
+#define node_attach(parent, node)  node_insert_before((node_t *)parent, NULL, (node_t *)node)
+
+node_t * node_insert_before(node_t * parent, node_t * sibling, node_t * node);
+
+#define node_is_root(node)  (! ((node_t *)(node))->parent && ! ((node_t *)(node))->next)
+
+node_t * node_root(node_t * node);
+
+node_t * node_find(node_t * node, void * data, int (* compare)(void * a, void * b));
+
+node_t * node_n_child(node_t * node, int n);
+
+int node_total(node_t  * root);
+
+void  node_unlink(node_t * node);
+
+void  node_destroy(node_t * root);
+
+int number_of_children(node_t * node);
+
+
+#endif
