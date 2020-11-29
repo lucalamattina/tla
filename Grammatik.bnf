@@ -1,0 +1,50 @@
+<start> ::= <methods>
+
+<parameters> ::= <extra_parameter> "kolon" <parameters> | <extra_parameter>
+
+<extra_parameter> ::= <type> ID
+
+<goto_arguments> ::= <goto_parameters> | λ
+
+<body> ::= <sentences> | λ
+
+<sentences> ::= <extra_sentence> <sentences> | <extra_sentence>
+
+<methods> ::= <extra_function> <methods> | <main>
+
+<goto_parameters> ::= <goto_extra_parameter> "kolon" <goto_parameters> | <goto_extra_parameter>
+
+<goto_extra_parameter> ::= <expression> | <boolean> | TSTRING
+
+<type> ::= INT | BOOLEAN | STRING
+
+<boolean> ::= TRUE_BOOL | FALSE_BOOL
+
+<assign> ::= ID "gleich" <expression> | ID "gleich" TSTRING | ID "gleich" <boolean>
+
+<expression> ::= ID | NUM | <goto> | <expression> "sum" <expression> | <expression> "subtrahieren" <expression> | <expression> "multiplizieren" <expression> | <expression> "teilen" <expression> | <expression> "modul" <expression>
+
+<compare> ::= "gleich?" | "anders" | "weniger" | "wenigerg" | "größer" | "größerg"
+
+<goto> ::= ID "oklammer" <goto_arguments> "sklammer" | "drucken" "oklammer" <goto_arguments> "sklammer" | READ "oklammer" <goto_arguments> "sklammer"
+
+<main> ::= "main" "oklammer" "sklammer" "ohalterung" <body> "ausfahrt" "shalterung"
+
+<return> ::= "ausfahrt" <expression> | "ausfahrt" TSTRING | "ausfahrt" <cond>
+
+<extra_function> ::= <type> ID "oklammer" <arguments> "sklammer" "ohalterung" <body> "shalterung"
+
+<if> ::= "wenn" "oklammer" <cond> "sklammer" "ohalterung" <body> "shalterung"
+
+<while> ::= "während" "oklammer" <cond> "sklammer" "ohalterung" <body> "shalterung"
+
+<extra_sentence> ::= <assign> "semikolon" | <declare> "semikolon" | <goto> "semikolon" | <return> "semikolon" | <if> | <while>
+
+<arguments> ::= <parameters> | λ
+
+<declare> ::= INT ID "gleich" <expression> | BOOLEAN ID "gleich" <boolean> | BOOLEAN ID "gleich" <goto> | STRING ID "gleich" TSTRING | STRING ID "gleich" <goto> | <type> ID "gleich" ID
+
+<cond> ::= <term> | <cond> "und" <cond> | <cond> "oder" <cond> | "nicht" <cond>
+
+<term> ::= <boolean> | <expression> <compare> <expression> | <goto> | ID
+
